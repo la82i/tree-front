@@ -1,0 +1,38 @@
+body {
+  background-color: var(--q-primary);
+  color: var(--q-primary);
+  font-family: 'GenWanMinTW', 'Noto Serif TC', serif;
+  line-height: 1.8;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mh-container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+
+.mh-btn-action {
+  border-radius: 0 !important;
+  letter-spacing: 1.5px;
+  font-weight: bold;
+}
+
+.mh-card-shadow {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+}
+
+.mh-hide-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
