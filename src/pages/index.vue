@@ -116,7 +116,7 @@
             >
               <div class="card-side side-back">
                 <q-card class="card-origin-style cursor-pointer full-height" flat v-ripple>
-                  <q-img src="/images/card.png" fit="cover" class="full-height" />
+                  <q-img src="`${baseUrl}images/card.png`" fit="cover" class="full-height" />
                 </q-card>
               </div>
 
@@ -280,12 +280,13 @@ const diaryContent = ref('')
 const isSaving = ref(false)
 const loadingBooks = ref(false)
 const isAnimating = ref(false)
+const baseUrl = import.meta.env.BASE_URL
 
 const carouselItems = [
-  { name: 'video1', video: '/video/rainy.mp4' },
-  { name: 'video2', video: '/video/fire.mp4' },
+  { name: 'video1', video: `${baseUrl}video/rainy.mp4` },
+  { name: 'video2', video: `${baseUrl}video/fire.mp4` },
 ]
-const musicMap = { video1: '/audio/rainy.mp3', video2: '/audio/fire.mp3' }
+const musicMap = { video1: `${baseUrl}audio/rainy.mp3`, video2: `${baseUrl}audio/fire.mp3` }
 const currentMusic = computed(() => musicMap[slide.value] || '')
 
 onMounted(() => {
