@@ -116,7 +116,7 @@
             >
               <div class="card-side side-back">
                 <q-card class="card-origin-style cursor-pointer full-height" flat v-ripple>
-                  <q-img src="`${baseUrl}images/card.png`" fit="cover" class="full-height" />
+                  <q-img src="images/card.png" fit="cover" class="full-height" />
                 </q-card>
               </div>
 
