@@ -236,6 +236,7 @@
               v-model="author.value.value"
               label="作者"
               color="brown-9"
+              outlined
               :error="!!author.errorMessage.value"
               :error-message="author.errorMessage.value"
             />
