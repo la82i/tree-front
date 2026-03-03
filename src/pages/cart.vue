@@ -1,8 +1,8 @@
 <template>
-  <q-page class="q-pa-xl bg-primary">
+  <q-page class="q-pa-md q-pa-sm-xl bg-primary">
     <div class="mh-container">
       <div class="text-h4 text-brown-9 q-mb-lg text-center">購物車</div>
-      <div class="row q-col-gutter-xl">
+      <div class="row q-col-gutter-md q-col-gutter-sm-xl">
         <div class="col-12 col-md-8">
           <div v-if="cart.length > 0" class="row q-col-gutter-md">
             <div
@@ -13,7 +13,7 @@
               <q-card
                 flat
                 bordered
-                class="bg-white q-pa-md rounded-card shadow-1 item-hover full-height column"
+                class="bg-white q-pa-md rounded-card shadow-1 item-hover full-height column overflow-hidden"
                 :class="{ 'bg-red-1': !item.product.sell }"
               >
                 <q-card-section class="q-pa-none col">
@@ -30,6 +30,7 @@
                     <div class="q-pl-md col" style="min-width: 0">
                       <div class="text-subtitle1 text-bold text-brown-10 ellipsis">
                         {{ item.product.name }}
+                        <q-tooltip>{{ item.product.name }}</q-tooltip>
                       </div>
                       <div class="text-caption text-grey-7">$ {{ item.product.price }}</div>
                       <div v-if="!item.product.sell" class="text-red text-caption text-bold">
@@ -88,7 +89,7 @@
         </div>
 
         <div class="col-12 col-md-4">
-          <q-card flat bordered class="q-pa-lg bg-white sticky-summary">
+          <q-card flat bordered class="q-pa-lg bg-white sticky-summary shadow-1">
             <div class="text-subtitle2 text-grey-7 q-mb-lg">訂單摘要</div>
 
             <div class="row justify-between q-mb-sm">
@@ -116,6 +117,9 @@
               :disabled="checkoutDisable"
               @click="checkout"
             />
+            <div class="text-caption text-grey-5 q-mt-md text-center">
+              運費將於下一個步驟計算（如有需要）。
+            </div>
           </q-card>
         </div>
       </div>
@@ -184,11 +188,11 @@ const sendUpdate = async (value, item, i) => {
 }
 
 const totalPrice = computed(() => {
-  return cart.value.reduce((total, item) => total + item.product.price * item.quantity, 0)
+  return cart.value.reduce((total, item) => total + (item.product?.price || 0) * item.quantity, 0)
 })
 
 const checkoutDisable = computed(() => {
-  return cart.value.length === 0 || cart.value.some((item) => !item.product.sell)
+  return cart.value.length === 0 || cart.value.some((item) => !item.product || !item.product.sell)
 })
 
 const checkout = async () => {
@@ -217,7 +221,7 @@ onMounted(getCart)
 }
 
 .rounded-card {
-  border-radius: 4px;
+  border-radius: 8px; /* 增加一點圓角，與管理系統一致 */
 }
 .border-bottom {
   border-bottom: 1px solid #efefef;
@@ -226,6 +230,7 @@ onMounted(getCart)
   transition: all 0.3s ease;
   &:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06) !important;
+    transform: translateY(-2px);
   }
 }
 </style>
