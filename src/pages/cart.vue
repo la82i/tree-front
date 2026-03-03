@@ -13,10 +13,10 @@
               <q-card
                 flat
                 bordered
-                class="bg-white rounded-card shadow-1 item-hover full-height column"
+                class="bg-white q-pa-md rounded-card shadow-1 item-hover full-height column"
                 :class="{ 'bg-red-1': !item.product.sell }"
               >
-                <q-card-section class="q-pa-md col">
+                <q-card-section class="q-pa-none col">
                   <div class="row items-center no-wrap">
                     <q-avatar
                       rounded
@@ -27,7 +27,7 @@
                       <q-img :src="item.product.imageUrl" fit="contain" ratio="1" />
                     </q-avatar>
 
-                    <div class="q-pl-md col">
+                    <div class="q-pl-md col" style="min-width: 0">
                       <div class="text-subtitle1 text-bold text-brown-10 ellipsis">
                         {{ item.product.name }}
                       </div>
@@ -63,9 +63,9 @@
                   </div>
                 </q-card-section>
 
-                <q-separator />
+                <q-separator class="q-mt-sm" />
 
-                <q-card-actions align="right" class="q-pa-sm">
+                <q-card-actions align="right" class="q-pa-xs">
                   <q-btn
                     flat
                     round
@@ -116,10 +116,6 @@
               :disabled="checkoutDisable"
               @click="checkout"
             />
-
-            <div class="text-caption text-grey-5 q-mt-md text-center">
-              運費將於下一個步驟計算（如有需要）。
-            </div>
           </q-card>
         </div>
       </div>
