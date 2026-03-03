@@ -28,6 +28,7 @@
                   outlined
                   placeholder="搜尋卡片名稱..."
                   class="bg-white"
+                  color="brown-9"
                 >
                   <template #prepend><q-icon name="search" /></template>
                 </q-input>
@@ -164,6 +165,7 @@
               v-model="name.value.value"
               label="卡片名稱"
               outlined
+              color="brown-9"
               :error="!!name.errorMessage.value"
               :error-message="name.errorMessage.value"
             />
@@ -209,6 +211,7 @@
               v-model="description.value.value"
               label="卡片解讀描述"
               type="textarea"
+              color="brown-9"
               outlined
               :error="!!description.errorMessage.value"
               :error-message="description.errorMessage.value"

@@ -25,6 +25,7 @@
                   v-model="search"
                   dense
                   outlined
+                  color="brown-9"
                   placeholder="搜尋訂單 ID 或 帳號"
                   class="bg-white"
                 >

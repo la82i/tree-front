@@ -23,6 +23,7 @@
               <div class="col-12 col-sm-grow">
                 <q-input
                   v-model="search"
+                  color="brown-9"
                   dense
                   outlined
                   placeholder="搜尋標籤..."
@@ -96,7 +97,7 @@
               autofocus
               :error="!!name.errorMessage.value"
               :error-message="name.errorMessage.value"
-              color="brown-4"
+              color="brown-9"
             />
           </q-card-section>
 

@@ -27,6 +27,7 @@
                   dense
                   outlined
                   placeholder="搜尋商品名稱..."
+                  color="brown-9"
                   class="bg-white"
                 >
                   <template #prepend><q-icon name="search" /></template>
@@ -226,6 +227,7 @@
             <q-input
               v-model="name.value.value"
               label="商品名稱"
+              color="brown-9"
               outlined
               :error="!!name.errorMessage.value"
               :error-message="name.errorMessage.value"
@@ -233,13 +235,14 @@
             <q-input
               v-model="author.value.value"
               label="作者"
-              outlined
+              color="brown-9"
               :error="!!author.errorMessage.value"
               :error-message="author.errorMessage.value"
             />
             <q-input
               v-model="publisher.value.value"
               label="出版社"
+              color="brown-9"
               outlined
               :error="!!publisher.errorMessage.value"
               :error-message="publisher.errorMessage.value"
@@ -247,6 +250,7 @@
             <q-input
               v-model="price.value.value"
               label="商品價格"
+              color="brown-9"
               type="number"
               outlined
               :error="!!price.errorMessage.value"
@@ -290,10 +294,17 @@
               </q-chip>
             </div>
 
-            <q-input v-model="quote.value.value" label="簡介" type="textarea" outlined />
+            <q-input
+              v-model="quote.value.value"
+              label="簡介"
+              color="brown-9"
+              type="textarea"
+              outlined
+            />
             <q-input
               v-model="description.value.value"
               label="商品詳細說明"
+              color="brown-9"
               type="textarea"
               outlined
             />
