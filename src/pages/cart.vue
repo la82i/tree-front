@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-xl bg-primary">
+  <q-page class="q-pa-md q-pa-md-xl bg-primary">
     <div class="mh-container">
       <div class="text-h4 text-brown-9 q-mb-lg text-center">購物車</div>
       <div class="row q-col-gutter-xl">
@@ -8,10 +8,10 @@
             <q-item
               v-for="(item, i) in cart"
               :key="item.product._id"
-              class="bg-white q-pa-lg rounded-card shadow-1 item-hover"
+              class="bg-white q-pa-md q-pa-sm-xl rounded-card shadow-1 item-hover row wrap items-center"
               :class="{ 'bg-red-1': !item.product.sell }"
             >
-              <q-item-section avatar>
+              <q-item-section avatar class="col-auto">
                 <q-avatar
                   rounded
                   size="100px"
@@ -27,7 +27,7 @@
                 </q-avatar>
               </q-item-section>
 
-              <q-item-section class="q-pl-md">
+              <q-item-section class="col-grow q-pl-md" style="min-width: 140px">
                 <q-item-label class="text-h6 text-brown-10">{{ item.product.name }}</q-item-label>
                 <q-item-label caption class="text-grey-7">$ {{ item.product.price }}</q-item-label>
                 <q-item-label v-if="!item.product.sell" class="text-red text-caption q-mt-xs"
@@ -53,7 +53,7 @@
                 </div>
               </q-item-section>
 
-              <q-item-section side class="text-right">
+              <q-item-section side class="col-12 col-sm-auto text-right q-mt-md q-mt-sm-none">
                 <div class="text-subtitle1 text-weight-bold text-brown-9">
                   $ {{ (item.product.price * item.quantity).toLocaleString() }}
                 </div>

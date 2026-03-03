@@ -12,9 +12,9 @@
           class="bg-primary shadow-2"
         >
           <q-carousel-slide
-            v-for="item in carouselItems"
-            :key="item.name"
-            :name="item.name"
+            v-for="video in currentVideos"
+            :key="video.name"
+            :name="video.name"
             class="column no-wrap flex-center q-pa-none"
           >
             <video
@@ -25,7 +25,7 @@
               playsinline
               style="width: 100%; height: 100%; object-fit: cover"
             >
-              <source :src="item.video" type="video/mp4" />
+              <source :src="video.video" type="video/mp4" />
             </video>
             <div
               class="absolute-full column justify-end items-center text-white"
@@ -34,6 +34,17 @@
               <div class="text-h5 text-center" style="letter-spacing: 3px; opacity: 0.9">
                 深呼吸，開啟聲音，將繁雜的思緒暫時放下
               </div>
+              <q-btn
+                class="q-mt-md"
+                round
+                flat
+                dense
+                color="white"
+                size="md"
+                :icon="isMuted ? 'volume_off' : 'volume_up'"
+                v-if="$q.screen.lt.sm"
+                @click.stop="toggleSound"
+              />
             </div>
           </q-carousel-slide>
 
@@ -41,17 +52,21 @@
             <q-carousel-control
               position="bottom"
               :offset="[0, 30]"
-              class="full-width row items-center justify-between q-px-xl"
+              class="full-width row items-center q-px-xl"
             >
-              <q-btn
-                round
-                flat
-                dense
-                color="white"
-                size="md"
-                :icon="isMuted ? 'volume_off' : 'volume_up'"
-                @click="toggleSound"
-              />
+              <div class="col row justify-start">
+                <q-btn
+                  round
+                  flat
+                  dense
+                  color="white"
+                  size="md"
+                  :icon="isMuted ? 'volume_off' : 'volume_up'"
+                  v-if="$q.screen.gt.xs"
+                  @click="toggleSound"
+                />
+              </div>
+
               <div class="row items-center q-gutter-xs">
                 <q-btn
                   flat
@@ -67,7 +82,7 @@
                   color="white"
                   label="開始探索"
                   size="md"
-                  class="q-px-xl"
+                  class="q-px-md q-px-sm-xl"
                   style="letter-spacing: 4px; backdrop-filter: blur(5px)"
                   @click="scrollToDraw"
                 />
@@ -80,7 +95,7 @@
                   @click="$refs.carousel.next()"
                 />
               </div>
-              <div style="width: 50px"></div>
+              <div class="col"></div>
             </q-carousel-control>
           </template>
         </q-carousel>
@@ -116,7 +131,7 @@
             >
               <div class="card-side side-back">
                 <q-card class="card-origin-style cursor-pointer full-height" flat v-ripple>
-                  <q-img src="images/card.png" fit="cover" class="full-height" />
+                  <q-img :src="cardImg" fit="cover" class="full-height" />
                 </q-card>
               </div>
 
@@ -282,7 +297,8 @@ const loadingBooks = ref(false)
 const isAnimating = ref(false)
 const baseUrl = import.meta.env.BASE_URL
 
-const carouselItems = [
+const cardImg = `${baseUrl}images/card.png`
+const currentVideos = [
   { name: 'video1', video: `${baseUrl}video/rainy.mp4` },
   { name: 'video2', video: `${baseUrl}video/fire.mp4` },
 ]

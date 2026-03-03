@@ -37,26 +37,28 @@
         </div>
       </div>
 
-      <div class="row justify-center q-gutter-sm q-mb-xl">
-        <q-btn
-          unelevated
-          rounded
-          label="全部"
-          :color="!selectedMood ? 'brown-10' : 'grey-2'"
-          :text-color="!selectedMood ? 'white' : 'grey-7'"
-          @click="selectedMood = null"
-        />
-        <q-btn
-          v-for="mood in moods"
-          :key="mood._id"
-          unelevated
-          rounded
-          :label="mood.name"
-          :color="selectedMood === mood._id ? 'brown-10' : 'grey-2'"
-          :text-color="selectedMood === mood._id ? 'white' : 'grey-7'"
-          @click="selectedMood = mood._id"
-        />
-      </div>
+      <q-scroll-area style="height: 120px; width: 100%" class="q-mb-xl">
+        <div class="row justify-center q-gutter-sm q-mb-xl">
+          <q-btn
+            unelevated
+            rounded
+            label="全部"
+            :color="!selectedMood ? 'brown-10' : 'grey-2'"
+            :text-color="!selectedMood ? 'white' : 'grey-7'"
+            @click="selectedMood = null"
+          />
+          <q-btn
+            v-for="mood in moods"
+            :key="mood._id"
+            unelevated
+            rounded
+            :label="mood.name"
+            :color="selectedMood === mood._id ? 'brown-10' : 'grey-2'"
+            :text-color="selectedMood === mood._id ? 'white' : 'grey-7'"
+            @click="selectedMood = mood._id"
+          />
+        </div>
+      </q-scroll-area>
     </div>
 
     <div>

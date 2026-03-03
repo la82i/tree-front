@@ -56,6 +56,7 @@
                   outlined
                   dense
                   label="數量"
+                  color="brown-9"
                   :rules="[(val) => val > 0 || '最少為 1']"
                   hide-bottom-space
                 />
