@@ -1,1 +1,0 @@
-import{aC as o,aD as e}from"./index-CSHukwQX.js";const p={create:t=>e.post("/product",t),getAll:()=>e.get("/product/all"),update:(t,r)=>e.patch(`/product/${t}`,r),remove:t=>e.delete(`/product/${t}`),getRecommend:t=>o.get(`/product/recommend/${t}`),get:()=>o.get("/product"),getId:t=>o.get(`/product/${t}`)};export{p as s};
