@@ -210,6 +210,89 @@
               </q-card>
             </div>
           </template>
+          <template v-slot:pagination="scope">
+            <div v-if="$q.screen.lt.md" class="row full-width justify-center items-center q-py-md">
+              <q-btn
+                icon="chevron_left"
+                color="brown-9"
+                round
+                flat
+                dense
+                :disable="scope.isFirstPage"
+                @click="scope.prevPage"
+              />
+
+              <div class="text-caption q-px-md text-brown-9 text-weight-bold">
+                {{ scope.pagination.page }} / {{ scope.pagesNumber }}
+              </div>
+
+              <q-btn
+                icon="chevron_right"
+                color="brown-9"
+                round
+                flat
+                dense
+                :disable="scope.isLastPage"
+                @click="scope.nextPage"
+              />
+            </div>
+
+            <div v-else class="row items-center">
+              <div class="text-caption q-mr-sm">每頁顯示:</div>
+              <q-select
+                v-model="pagination.rowsPerPage"
+                :options="[6, 12, 24, 0]"
+                dense
+                flat
+                borderless
+                options-dense
+                class="q-mr-xl"
+                style="min-width: 60px"
+              />
+
+              <q-btn
+                icon="first_page"
+                color="grey-8"
+                round
+                flat
+                dense
+                :disable="scope.isFirstPage"
+                @click="scope.firstPage"
+              />
+              <q-btn
+                icon="chevron_left"
+                color="grey-8"
+                round
+                flat
+                dense
+                :disable="scope.isFirstPage"
+                @click="scope.prevPage"
+              />
+
+              <div class="q-px-sm text-caption text-weight-bold">
+                {{ scope.pagination.page }} / {{ scope.pagesNumber }}
+              </div>
+
+              <q-btn
+                icon="chevron_right"
+                color="grey-8"
+                round
+                flat
+                dense
+                :disable="scope.isLastPage"
+                @click="scope.nextPage"
+              />
+              <q-btn
+                icon="last_page"
+                color="grey-8"
+                round
+                flat
+                dense
+                :disable="scope.isLastPage"
+                @click="scope.lastPage"
+              />
+            </div>
+          </template>
         </q-table>
       </q-card>
     </div>
