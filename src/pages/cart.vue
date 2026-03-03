@@ -134,7 +134,7 @@ const cart = ref([])
 const getCart = async () => {
   try {
     const { data } = await serviceUser.getCart()
-    cart.value = data.result
+    cart.value = data.result.filter((item) => item.product !== null)
   } catch (error) {
     console.log(error)
     $q.notify({ color: 'red', message: '讀取收藏失敗' })
