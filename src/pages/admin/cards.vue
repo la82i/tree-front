@@ -2,7 +2,7 @@
   <q-page class="q-pa-md bg-primary">
     <div class="mh-container" style="max-width: 1300px">
       <div class="col-12 q-mb-xl text-center">
-        <h1 class="text-h4 text-weight-bolder text-brown-9">心靈卡片管理系統</h1>
+        <h1 class="text-h4 text-weight-bolder text-brown-9">卡片管理系統</h1>
       </div>
       <q-separator class="full-width q-my-md" />
 
@@ -16,7 +16,6 @@
           :no-data-label="'目前樹洞中沒有任何卡片紀錄'"
           class="admin-card-table"
           v-model:pagination="pagination"
-          :rows-per-page-options="[5, 10, 20, 50, 0]"
           :grid="$q.screen.lt.md"
         >
           <template #top>
@@ -147,6 +146,46 @@
                   </div>
                 </q-card-section>
               </q-card>
+            </div>
+          </template>
+
+          <template v-slot:bottom>
+            <div class="row full-width justify-center items-center q-gutter-md q-py-lg">
+              <div class="text-brown-9 text-weight-bold">
+                {{ (pagination.page - 1) * pagination.rowsPerPage + 1 }}-{{
+                  Math.min(pagination.page * pagination.rowsPerPage, cards.length)
+                }}
+                / 共 {{ cards.length }} 筆
+              </div>
+
+              <div class="row items-center">
+                <span class="text-grey-7 q-mr-sm">每頁顯示：</span>
+                <q-select
+                  v-model="pagination.rowsPerPage"
+                  :options="[5, 10, 20, 50]"
+                  dense
+                  outlined
+                  rounded
+                  options-dense
+                  style="width: 85px"
+                  bg-color="white"
+                  color="brown-9"
+                  popup-content-class="bg-primary text-brown-9"
+                  options-selected-class="bg-brown-9 text-white text-bold"
+                />
+              </div>
+
+              <q-pagination
+                v-model="pagination.page"
+                :max="Math.ceil(cards.length / pagination.rowsPerPage) || 1"
+                :max-pages="6"
+                color="brown-9"
+                direction-links
+                flat
+                active-design="push"
+                active-color="brown-2"
+                active-text-color="brown-10"
+              />
             </div>
           </template>
         </q-table>

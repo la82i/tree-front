@@ -178,7 +178,7 @@
           讓我們在安全的前提下探索自己。
         </div>
         <div class="text-center text-caption text-brown-7 text-weight-regular letter-spacing-1">
-          © 2026 心靈樹洞 MindHollow. All rights reserved.
+          © 2026 心靈樹洞 All rights reserved.
         </div>
       </div>
     </q-footer>
