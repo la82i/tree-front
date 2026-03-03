@@ -4,72 +4,81 @@
       <div class="text-h4 text-brown-9 q-mb-lg text-center">購物車</div>
       <div class="row q-col-gutter-xl">
         <div class="col-12 col-md-8">
-          <q-list v-if="cart.length > 0" class="q-gutter-y-md">
-            <q-item
+          <div v-if="cart.length > 0" class="row q-col-gutter-md">
+            <div
               v-for="(item, i) in cart"
               :key="item.product._id"
-              class="bg-white q-pa-lg rounded-card shadow-1 item-hover"
-              :class="{ 'bg-red-1': !item.product.sell }"
+              class="col-12 col-sm-6 col-md-12"
             >
-              <q-item-section avatar>
-                <q-avatar
-                  rounded
-                  size="100px"
-                  class="cursor-pointer"
-                  @click="router.push('/product/' + item.product._id)"
-                >
-                  <q-img
-                    :src="item.product.imageUrl"
-                    fit="contain"
-                    ratio="0.9"
-                    style="width: 100%; height: auto"
-                  />
-                </q-avatar>
-              </q-item-section>
+              <q-card
+                flat
+                bordered
+                class="bg-white rounded-card shadow-1 item-hover full-height column"
+                :class="{ 'bg-red-1': !item.product.sell }"
+              >
+                <q-card-section class="q-pa-md col">
+                  <div class="row items-center no-wrap">
+                    <q-avatar
+                      rounded
+                      size="80px"
+                      class="cursor-pointer flex-shrink-0"
+                      @click="router.push('/product/' + item.product._id)"
+                    >
+                      <q-img :src="item.product.imageUrl" fit="contain" ratio="1" />
+                    </q-avatar>
 
-              <q-item-section class="q-pl-md">
-                <q-item-label class="text-h6 text-brown-10">{{ item.product.name }}</q-item-label>
-                <q-item-label caption class="text-grey-7">$ {{ item.product.price }}</q-item-label>
-                <q-item-label v-if="!item.product.sell" class="text-red text-caption q-mt-xs"
-                  >此商品已下架</q-item-label
-                >
+                    <div class="q-pl-md col">
+                      <div class="text-subtitle1 text-bold text-brown-10 ellipsis">
+                        {{ item.product.name }}
+                      </div>
+                      <div class="text-caption text-grey-7">$ {{ item.product.price }}</div>
+                      <div v-if="!item.product.sell" class="text-red text-caption text-bold">
+                        此商品已下架
+                      </div>
+                    </div>
+                  </div>
 
-                <div class="row items-center q-mt-md q-gutter-x-sm">
+                  <div class="row items-center justify-between q-mt-md">
+                    <div class="row items-center q-gutter-x-sm">
+                      <q-btn
+                        outline
+                        round
+                        size="xs"
+                        icon="remove"
+                        @click="updateCart(item.quantity - 1, item, i)"
+                      />
+                      <span class="text-body1 q-px-sm">{{ item.quantity }}</span>
+                      <q-btn
+                        outline
+                        round
+                        size="xs"
+                        icon="add"
+                        @click="updateCart(item.quantity + 1, item, i)"
+                      />
+                    </div>
+
+                    <div class="text-subtitle1 text-weight-bold text-brown-9">
+                      $ {{ (item.product.price * item.quantity).toLocaleString() }}
+                    </div>
+                  </div>
+                </q-card-section>
+
+                <q-separator />
+
+                <q-card-actions align="right" class="q-pa-sm">
                   <q-btn
-                    outline
+                    flat
                     round
-                    size="xs"
-                    icon="remove"
-                    @click="updateCart(item.quantity - 1, item, i)"
+                    color="grey-4"
+                    text-color="grey-7"
+                    icon="o_delete"
+                    size="sm"
+                    @click="updateCart(0, item, i)"
                   />
-                  <span class="text-body1 q-px-sm">{{ item.quantity }}</span>
-                  <q-btn
-                    outline
-                    round
-                    size="xs"
-                    icon="add"
-                    @click="updateCart(item.quantity + 1, item, i)"
-                  />
-                </div>
-              </q-item-section>
-
-              <q-item-section side class="text-right">
-                <div class="text-subtitle1 text-weight-bold text-brown-9">
-                  $ {{ (item.product.price * item.quantity).toLocaleString() }}
-                </div>
-                <q-btn
-                  flat
-                  round
-                  color="grey-4"
-                  text-color="grey-7"
-                  icon="o_delete"
-                  size="sm"
-                  class="q-mt-md"
-                  @click="updateCart(0, item, i)"
-                />
-              </q-item-section>
-            </q-item>
-          </q-list>
+                </q-card-actions>
+              </q-card>
+            </div>
+          </div>
 
           <div v-else class="column items-center q-pt-xl text-grey-6">
             <q-icon name="o_shopping_basket" size="100px" />

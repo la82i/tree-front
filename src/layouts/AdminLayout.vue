@@ -3,7 +3,8 @@
     <q-header bordered class="bg-primary text-center text-brown-9 lt-md">
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title class="text-weight-bold"> 樹洞管理系統 </q-toolbar-title>
+        <q-toolbar-title class="text-weight-bold text-center"> 樹洞管理系統 </q-toolbar-title>
+        <div style="width: 42px"></div>
       </q-toolbar>
     </q-header>
 
