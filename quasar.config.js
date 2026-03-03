@@ -48,7 +48,7 @@ export default defineConfig((/* ctx */) => {
 
       // rebuildCache: true, // rebuilds Vite/linter/etc cache on startup
 
-      publicPath: process.env.NODE_ENV === 'production' ? '/tree-front/' : '/',
+      publicPath: '/tree-front/',
       // analyze: true,
       // env: {},
       // rawDefine: {}
