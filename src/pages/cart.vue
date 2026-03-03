@@ -2,7 +2,7 @@
   <q-page class="q-pa-md q-pa-sm-xl bg-primary">
     <div class="mh-container">
       <div class="text-h4 text-brown-9 q-mb-lg text-center">購物車</div>
-      <div class="row q-col-gutter-md q-col-gutter-sm-xl">
+      <div class="row q-col-gutter-xl">
         <div class="col-12 col-md-8">
           <div v-if="cart.length > 0" class="row q-col-gutter-md">
             <div
@@ -13,26 +13,28 @@
               <q-card
                 flat
                 bordered
-                class="bg-white q-pa-md rounded-card shadow-1 item-hover full-height column overflow-hidden"
+                class="bg-white q-pa-md rounded-card shadow-1 item-hover full-height column"
                 :class="{ 'bg-red-1': !item.product.sell }"
               >
                 <q-card-section class="q-pa-none col">
-                  <div class="row items-center no-wrap">
+                  <div class="row items-center">
                     <q-avatar
                       rounded
                       size="80px"
-                      class="cursor-pointer flex-shrink-0"
+                      class="cursor-pointer flex-shrink-0 q-mr-md"
                       @click="router.push('/product/' + item.product._id)"
                     >
                       <q-img :src="item.product.imageUrl" fit="contain" ratio="1" />
                     </q-avatar>
 
-                    <div class="q-pl-md col" style="min-width: 0">
-                      <div class="text-subtitle1 text-bold text-brown-10 ellipsis">
+                    <div class="col" style="min-width: 0">
+                      <div
+                        class="text-subtitle1 text-bold text-brown-10"
+                        style="word-break: break-word; line-height: 1.2"
+                      >
                         {{ item.product.name }}
-                        <q-tooltip>{{ item.product.name }}</q-tooltip>
                       </div>
-                      <div class="text-caption text-grey-7">$ {{ item.product.price }}</div>
+                      <div class="text-caption text-grey-7 q-mt-xs">$ {{ item.product.price }}</div>
                       <div v-if="!item.product.sell" class="text-red text-caption text-bold">
                         此商品已下架
                       </div>
@@ -117,9 +119,6 @@
               :disabled="checkoutDisable"
               @click="checkout"
             />
-            <div class="text-caption text-grey-5 q-mt-md text-center">
-              運費將於下一個步驟計算（如有需要）。
-            </div>
           </q-card>
         </div>
       </div>
@@ -221,7 +220,7 @@ onMounted(getCart)
 }
 
 .rounded-card {
-  border-radius: 8px; /* 增加一點圓角，與管理系統一致 */
+  border-radius: 8px;
 }
 .border-bottom {
   border-bottom: 1px solid #efefef;
