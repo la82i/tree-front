@@ -1,0 +1,1 @@
+import{aD as e,aC as r}from"./index-SBXGjzin.js";const c={getRandom:()=>r.get("/card/random"),getAll:()=>r.get("/card/all"),create:a=>e.post("/card",a),update:(a,t)=>e.patch(`/card/${a}`,t),remove:a=>e.delete(`/card/${a}`)};export{c as s};
