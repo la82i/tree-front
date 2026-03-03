@@ -210,86 +210,42 @@
               </q-card>
             </div>
           </template>
-          <template v-slot:pagination="scope">
-            <div v-if="$q.screen.lt.md" class="row full-width justify-center items-center q-py-md">
-              <q-btn
-                icon="chevron_left"
-                color="brown-9"
-                round
-                flat
-                dense
-                :disable="scope.isFirstPage"
-                @click="scope.prevPage"
-              />
-
-              <div class="text-caption q-px-md text-brown-9 text-weight-bold">
-                {{ scope.pagination.page }} / {{ scope.pagesNumber }}
+          <template v-slot:bottom>
+            <div class="row full-width justify-center items-center q-gutter-md q-py-lg">
+              <div class="text-brown-9 text-weight-bold">
+                {{ (pagination.page - 1) * pagination.rowsPerPage + 1 }}-{{
+                  Math.min(pagination.page * pagination.rowsPerPage, products.length)
+                }}
+                / 共 {{ products.length }} 筆
               </div>
 
-              <q-btn
-                icon="chevron_right"
-                color="brown-9"
-                round
-                flat
-                dense
-                :disable="scope.isLastPage"
-                @click="scope.nextPage"
-              />
-            </div>
-
-            <div v-else class="row items-center">
-              <div class="text-caption q-mr-sm">每頁顯示:</div>
-              <q-select
-                v-model="pagination.rowsPerPage"
-                :options="[6, 12, 24, 0]"
-                dense
-                flat
-                borderless
-                options-dense
-                class="q-mr-xl"
-                style="min-width: 60px"
-              />
-
-              <q-btn
-                icon="first_page"
-                color="grey-8"
-                round
-                flat
-                dense
-                :disable="scope.isFirstPage"
-                @click="scope.firstPage"
-              />
-              <q-btn
-                icon="chevron_left"
-                color="grey-8"
-                round
-                flat
-                dense
-                :disable="scope.isFirstPage"
-                @click="scope.prevPage"
-              />
-
-              <div class="q-px-sm text-caption text-weight-bold">
-                {{ scope.pagination.page }} / {{ scope.pagesNumber }}
+              <div class="row items-center">
+                <span class="text-grey-7 q-mr-sm">每頁顯示：</span>
+                <q-select
+                  v-model="pagination.rowsPerPage"
+                  :options="[6, 12, 24, 50]"
+                  dense
+                  outlined
+                  rounded
+                  options-dense
+                  style="width: 85px"
+                  bg-color="white"
+                  color="brown-9"
+                  popup-content-class="bg-primary text-brown-9"
+                  options-selected-class="bg-brown-9 text-white text-bold"
+                />
               </div>
 
-              <q-btn
-                icon="chevron_right"
-                color="grey-8"
-                round
+              <q-pagination
+                v-model="pagination.page"
+                :max="Math.ceil(products.length / pagination.rowsPerPage) || 1"
+                :max-pages="6"
+                color="brown-9"
+                direction-links
                 flat
-                dense
-                :disable="scope.isLastPage"
-                @click="scope.nextPage"
-              />
-              <q-btn
-                icon="last_page"
-                color="grey-8"
-                round
-                flat
-                dense
-                :disable="scope.isLastPage"
-                @click="scope.lastPage"
+                active-design="push"
+                active-color="brown-2"
+                active-text-color="brown-10"
               />
             </div>
           </template>

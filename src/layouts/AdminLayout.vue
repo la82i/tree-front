@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fFf" class="bg-primary">
-    <q-header bordered class="bg-white text-brown-9 lt-md">
+    <q-header bordered class="bg-primary text-center text-brown-9 lt-md">
       <q-toolbar>
         <q-btn flat dense round icon="menu" aria-label="Menu" @click="toggleLeftDrawer" />
         <q-toolbar-title class="text-weight-bold"> 樹洞管理系統 </q-toolbar-title>
