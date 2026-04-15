@@ -350,18 +350,20 @@ const handleFlipAndPick = (card, index) => {
     rotationY: 180,
     duration: 0.8,
     ease: 'power2.inOut',
-    onComplete: () => {
+    onComplete: async () => {
       selectedCard.value = card
       if (card.moods?.length > 0) {
         loadingBooks.value = true
-        serviceProduct
-          .getRecommend(card.moods[0]._id)
-          .then(({ data }) => {
-            recommendedBooks.value = data.result.slice(0, 1)
-          })
-          .finally(() => {
-            loadingBooks.value = false
-          })
+        try {
+          const { data } = await serviceProduct.getRecommend(card.moods[0]._id)
+          recommendedBooks.value = data.result.slice(0, 1)
+        } catch (err) {
+          console.error('獲取推薦書籍失敗:', err)
+          recommendedBooks.value = []
+          $q.notify({ color: 'negative', message: '獲取推薦書籍失敗' })
+        } finally {
+          loadingBooks.value = false
+        }
       }
       setTimeout(() => {
         showDialog.value = true
